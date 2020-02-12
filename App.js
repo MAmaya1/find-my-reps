@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default function App() {
   return (
@@ -15,6 +16,8 @@ export default function App() {
     </Provider>
   );
 }
+
+// StyleSheet
 
 const styles = StyleSheet.create({
   container: {
