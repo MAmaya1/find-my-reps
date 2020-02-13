@@ -11,7 +11,8 @@ const AddressForm = props => {
     const [userAddress, setAddress] = useState('');
 
     submitAddress = () => {
-        getReps(userAddress);
+        props.getReps(userAddress);
+        Object.keys(props.reps).length > 0 && (props.navigation.navigate('My Representatives'));
     }
 
     return (
@@ -33,6 +34,7 @@ const AddressForm = props => {
 
 const mapStateToProps = state => {
     return {
+        reps: state.reps,
         fetchingReps: state.fetchingReps,
         fetchingRepsError: state.fetchingRepsError
     }
