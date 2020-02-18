@@ -9,7 +9,17 @@ const RepCard = props => {
             <Text>{props.rep.name}</Text>
             
             {/* Rep title */}
-           <Text>{props.repTitle.name}</Text>
+            <Text>{props.repTitle.name}</Text>
+
+            {/* Party Preference */}
+            {props.rep.party.includes('Democrat') ? (
+                <Text>(D)</Text>
+            ) : props.rep.party.includes('Republican') ? (
+                <Text>(R)</Text>
+            ) : props.rep.party.includes('Nonpartisan') ? (
+                <Text>(NP)</Text>
+            ): <Text>{props.rep.party}</Text>}
+           
         </View>
     )
 }
