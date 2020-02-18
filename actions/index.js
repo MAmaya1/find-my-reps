@@ -6,7 +6,6 @@ export const GET_REPS_SUCCESS = 'GET_REPS_SUCCESS';
 export const GET_REPS_FAILURE = 'GET_REPS_FAILURE';
 
 export const getReps = address => dispatch => {
-    console.log('ADDRESS CHECK ===>', address)
     dispatch({ type: GET_REPS_START });
     return axios
         .get(`https://www.googleapis.com/civicinfo/v2/representatives?key=${GOOGLE_KEY}&address=${address}`)
