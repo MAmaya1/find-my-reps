@@ -13,7 +13,10 @@ const RepsView = props => {
                 <Text>Loading reps...</Text>
             )}
             {props.reps && !props.fetchingReps && (
-                <RepsList reps={props.reps} />
+                <RepsList 
+                    reps={props.reps}
+                    navigation={props.navigation}
+                />
             )}
             {props.fetchingRepsError && (
                 <Text>{props.fetchingRepsError}</Text>

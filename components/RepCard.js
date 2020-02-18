@@ -1,9 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 const RepCard = props => {
     return(
-        <View>
+        <TouchableOpacity
+            onPress={() => props.navigation.navigate('Representative Details', {
+                repInfo: props.rep
+            })}
+        >
 
             {/* Rep name */}
             <Text>{props.rep.name}</Text>
@@ -19,8 +23,7 @@ const RepCard = props => {
             ) : props.rep.party.includes('Nonpartisan') ? (
                 <Text>(NP)</Text>
             ): <Text>{props.rep.party}</Text>}
-           
-        </View>
+        </TouchableOpacity>
     )
 }
 

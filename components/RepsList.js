@@ -21,6 +21,7 @@ const RepsList = props => {
                                         key={Math.random()}
                                         rep={props.reps.officials[officialIndex]}
                                         repTitle={props.reps.offices[officeIndex]}
+                                        navigation={props.navigation}
                                     />
                                 ))
                         ))}
