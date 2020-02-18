@@ -5,9 +5,17 @@ const RepCard = props => {
     return(
         <TouchableOpacity
             onPress={() => props.navigation.navigate('Representative Details', {
-                repInfo: props.rep
+                repInfo: props.rep,
+                repTitle: props.repTitle.name
             })}
         >
+
+            {/* Rep photo */}
+            { /* TODO: Add conditional for placeholder pic if rep does not have photoUrl */}
+            <Image 
+                style={{width: 100, height: 100}}
+                source={{uri: props.rep.photoUrl}}
+            />
 
             {/* Rep name */}
             <Text>{props.rep.name}</Text>
