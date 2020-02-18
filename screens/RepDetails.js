@@ -8,11 +8,15 @@ const RepDetails = ({ route })=> {
 
     return(
         <View>
+
+            {/* General profile */}
             <View style={styles.container}>
+
                 <Image 
                     style={{width: 180, height: 180}}
-                    source={{uri: repInfo.photoUrl}}
+                    source={repInfo.photoUrl ? {uri: repInfo.photoUrl} : require('../img/profile.jpg')}
                 />
+
                 <Text>{repInfo.name}</Text>
 
                  {/* Party Preference */}

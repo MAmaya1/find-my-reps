@@ -10,11 +10,10 @@ const RepCard = props => {
             })}
         >
 
-            {/* Rep photo */}
-            { /* TODO: Add conditional for placeholder pic if rep does not have photoUrl */}
+            {/* Verify Rep photo source */}
             <Image 
                 style={{width: 100, height: 100}}
-                source={{uri: props.rep.photoUrl}}
+                source={props.rep.photoUrl ? {uri: props.rep.photoUrl} : require('../img/profile.jpg')}
             />
 
             {/* Rep name */}
