@@ -11,7 +11,9 @@ const AddressForm = props => {
     const [userAddress, setAddress] = useState('');
 
     submitAddress = () => {
-        getReps(userAddress);
+        // TODO: add address validation besides successful API call
+        props.getReps(userAddress);
+        props.navigation.navigate('My Representatives');
     }
 
     return (
@@ -33,8 +35,7 @@ const AddressForm = props => {
 
 const mapStateToProps = state => {
     return {
-        fetchingReps: state.fetchingReps,
-        fetchingRepsError: state.fetchingRepsError
+        reps: state.reps
     }
 }
 
