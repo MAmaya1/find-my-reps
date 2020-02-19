@@ -52,10 +52,14 @@ const RepDetails = ({ route })=> {
                 <Text onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>
             </View>
 
-            <View style={styles.container}>
-                <Text>Email</Text>
-                <Text onPress={() => Linking.openURL(`mailto: ${repInfo.emails[0]}`)}>{repInfo.emails}</Text>
-            </View>
+            {/* Verify Rep email */}
+
+            {repInfo.email !== undefined && (
+                <View style={styles.container}>
+                    <Text>Email</Text>
+                    <Text onPress={() => Linking.openURL(`mailto: ${repInfo.emails[0]}`)}>{repInfo.emails}</Text>
+                </View>
+            )}
 
             {/* Verify rep website */}
             {repInfo.urls !== undefined && (
