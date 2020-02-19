@@ -11,14 +11,14 @@ const RepsList = props => {
 
     return(
         <ScrollView>
-            {divisionNames.map(division => (
+            {divisionNames.map((division, index) => (
                 props.reps.divisions[division].officeIndices !== undefined && (
-                    <View key={Math.random()}>
+                    <View key={index}>
                         <Text style={styles.title}>{props.reps.divisions[division].name}</Text>
                         {props.reps.divisions[division].officeIndices.map(officeIndex => (
-                                props.reps.offices[officeIndex].officialIndices.map(officialIndex => (
+                                props.reps.offices[officeIndex].officialIndices.map((officialIndex, index) => (
                                     <RepCard 
-                                        key={Math.random()}
+                                        key={index}
                                         rep={props.reps.officials[officialIndex]}
                                         repTitle={props.reps.offices[officeIndex]}
                                         navigation={props.navigation}

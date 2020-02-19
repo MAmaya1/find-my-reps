@@ -26,7 +26,7 @@ const RepDetails = ({ route })=> {
                     <Text>(R)</Text>
                 ) : repInfo.party.includes('Nonpartisan') ? (
                     <Text>(NP)</Text>
-                ): <Text>{repInfo.party}</Text>}
+                ) : <Text>{repInfo.party}</Text>}
 
                 {/* Rep job title */}
                 <Text>{repTitle}</Text>
@@ -36,8 +36,8 @@ const RepDetails = ({ route })=> {
             {repInfo.address !== undefined && (
                 <View style={styles.container}>
                     <Text>Address</Text>
-                    {repInfo.address.map(address => (
-                     <View>
+                    {repInfo.address.map((address, index) => (
+                     <View key={index}>
                         <Text>{address['line1']}</Text>
                         <Text>{address['line2']} {address['line3']}</Text>
                         <Text>{address['city']}, {address['state']} {address['zip']}</Text>
@@ -67,19 +67,19 @@ const RepDetails = ({ route })=> {
 
             {/* Verify repInfo contains channels before mapping */}
             {repInfo.channels !== undefined && (
-                repInfo.channels.map(channel => (
+                repInfo.channels.map((channel, index) => (
                     channel.type.toLowerCase() === 'facebook' ? (
-                        <View style={styles.container}>
+                        <View style={styles.container} key={index}>
                             <Text>Facebook</Text>
                             <Text onPress={() => Linking.openURL(`https://facebook.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'twitter' ? (
-                        <View style={styles.container}>
+                        <View style={styles.container} key={index}>
                             <Text>Twitter</Text>
                             <Text onPress={() => Linking.openURL(`https://twitter.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'youtube' ? (
-                        <View style={styles.container}>
+                        <View style={styles.container} key={index}>
                             <Text>YouTube</Text>
                             <Text onPress={() => Linking.openURL(`https://youtube.com/${channel.id}`)}>{channel.id}</Text>
                         </View>

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 const RepCard = props => {
     return(
         <TouchableOpacity
-            onPress={() => props.navigation.navigate('Representative Details', {
+            onPress={() => props.navigation.navigate('Representative Profile', {
                 repInfo: props.rep,
                 repTitle: props.repTitle.name
             })}
