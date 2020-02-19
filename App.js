@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
@@ -28,7 +27,7 @@ export default function App() {
         <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen name='Home' component={AddressForm} />
           <Stack.Screen name='My Representatives' component={RepsScreen} />
-          <Stack.Screen name='Representative Details' component={RepDetails}/>
+          <Stack.Screen name='Representative Profile' component={RepDetails}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
