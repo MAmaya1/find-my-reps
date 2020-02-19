@@ -46,7 +46,7 @@ const RepDetails = ({ route })=> {
 
             <View style={styles.container}>
                 <Text>Phone</Text>
-                <Text>{repInfo.phones}</Text>
+                <Text onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>
             </View>
 
             <View style={styles.container}>
