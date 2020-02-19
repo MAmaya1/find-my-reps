@@ -5,12 +5,9 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 import RepCard from './RepCard';
 
-// let divisionNames = {};
-
 const RepsList = props => {
-
+    // Collecting division names in an array
     const divisionNames = Object.keys(props.reps.divisions);
-    console.log('DIVISIONNAMES===>', divisionNames)
 
     return(
         <ScrollView>
@@ -24,6 +21,7 @@ const RepsList = props => {
                                         key={Math.random()}
                                         rep={props.reps.officials[officialIndex]}
                                         repTitle={props.reps.offices[officeIndex]}
+                                        navigation={props.navigation}
                                     />
                                 ))
                         ))}

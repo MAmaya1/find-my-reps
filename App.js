@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import AddressForm from './screens/AddressForm';
 import RepsScreen from './screens/RepsScreen';
+import RepDetails from './screens/RepDetails';
 
 // Redux Store
 
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen name='Home' component={AddressForm} />
           <Stack.Screen name='My Representatives' component={RepsScreen} />
+          <Stack.Screen name='Representative Details' component={RepDetails}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
