@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Linking } from 'react-native';
 
 const RepDetails = ({ route })=> {
 
@@ -58,7 +58,7 @@ const RepDetails = ({ route })=> {
             {repInfo.urls !== undefined && (
                 <View style={styles.container}>
                     <Text>Website</Text>
-                    <Text>{repInfo.urls}</Text>
+                    <Text onPress={() => Linking.openURL(repInfo.urls[0])}>{repInfo.urls}</Text>
                 </View>
             )}
 
@@ -68,14 +68,17 @@ const RepDetails = ({ route })=> {
                     channel.type.toLowerCase() === 'facebook' ? (
                         <View style={styles.container}>
                             <Text>Facebook</Text>
+                            <Text onPress={() => Linking.openURL(`http://facebook.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'twitter' ? (
                         <View style={styles.container}>
                             <Text>Twitter</Text>
+                            <Text onPress={() => Linking.openURL(`http://twitter.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'youtube' ? (
                         <View style={styles.container}>
                             <Text>YouTube</Text>
+                            <Text onPress={() => Linking.openURL(`http://youtube.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : null
                 ))
