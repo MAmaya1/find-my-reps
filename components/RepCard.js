@@ -23,11 +23,11 @@ const RepCard = props => {
             <Text>{props.repTitle.name}</Text>
 
             {/* Party Preference */}
-            {props.rep.party.includes('Democrat') ? (
+            {props.rep.party.toLowerCase().includes('democrat') ? (
                 <Text>(D)</Text>
-            ) : props.rep.party.includes('Republican') ? (
+            ) : props.rep.party.toLowerCase().includes('republican') ? (
                 <Text>(R)</Text>
-            ) : props.rep.party.includes('Nonpartisan') ? (
+            ) : props.rep.party.toLowerCase().includes('nonpartisan') ? (
                 <Text>(NP)</Text>
             ): <Text>{props.rep.party}</Text>}
         </TouchableOpacity>
