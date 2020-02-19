@@ -51,7 +51,7 @@ const RepDetails = ({ route })=> {
 
             <View style={styles.container}>
                 <Text>Email</Text>
-                <Text>{repInfo.emails}</Text>
+                <Text onPress={() => Linking.openURL(`mailto: ${repInfo.emails[0]}`)}>{repInfo.emails}</Text>
             </View>
 
             {/* Verify rep website */}
