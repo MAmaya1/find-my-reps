@@ -54,7 +54,7 @@ const RepDetails = ({ route })=> {
 
             {/* Verify Rep email */}
 
-            {repInfo.email !== undefined && (
+            {repInfo.emails !== undefined && (
                 <View style={styles.container}>
                     <Text>Email</Text>
                     <Text onPress={() => Linking.openURL(`mailto: ${repInfo.emails[0]}`)}>{repInfo.emails}</Text>
