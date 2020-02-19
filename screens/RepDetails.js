@@ -54,10 +54,13 @@ const RepDetails = ({ route })=> {
                 <Text>{repInfo.emails}</Text>
             </View>
 
-            <View style={styles.container}>
-                <Text>Website</Text>
-                <Text>{repInfo.urls}</Text>
-            </View>
+            {/* Verify rep website */}
+            {repInfo.urls !== undefined && (
+                <View style={styles.container}>
+                    <Text>Website</Text>
+                    <Text>{repInfo.urls}</Text>
+                </View>
+            )}
 
             {/* Verify repInfo contains channels before mapping */}
             {repInfo.channels !== undefined && (
