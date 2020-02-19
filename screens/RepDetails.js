@@ -27,6 +27,8 @@ const RepDetails = ({ route })=> {
                 ) : repInfo.party.includes('Nonpartisan') ? (
                     <Text>(NP)</Text>
                 ): <Text>{repInfo.party}</Text>}
+
+                {/* Rep job title */}
                 <Text>{repTitle}</Text>
             </View>
 
@@ -44,6 +46,7 @@ const RepDetails = ({ route })=> {
              </View>
             )}
 
+            {/* TODO: refactor links for iOS */}
             <View style={styles.container}>
                 <Text>Phone</Text>
                 <Text onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>
@@ -68,17 +71,17 @@ const RepDetails = ({ route })=> {
                     channel.type.toLowerCase() === 'facebook' ? (
                         <View style={styles.container}>
                             <Text>Facebook</Text>
-                            <Text onPress={() => Linking.openURL(`http://facebook.com/${channel.id}`)}>{channel.id}</Text>
+                            <Text onPress={() => Linking.openURL(`https://facebook.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'twitter' ? (
                         <View style={styles.container}>
                             <Text>Twitter</Text>
-                            <Text onPress={() => Linking.openURL(`http://twitter.com/${channel.id}`)}>{channel.id}</Text>
+                            <Text onPress={() => Linking.openURL(`https://twitter.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'youtube' ? (
                         <View style={styles.container}>
                             <Text>YouTube</Text>
-                            <Text onPress={() => Linking.openURL(`http://youtube.com/${channel.id}`)}>{channel.id}</Text>
+                            <Text onPress={() => Linking.openURL(`https://youtube.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : null
                 ))
