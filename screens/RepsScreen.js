@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { FontAwesome } from '@expo/vector-icons';
 
 // Import RepsList Component
 import RepsList from '../components/RepsList';
@@ -17,8 +18,9 @@ const RepsView = props => {
     // Header navigaion options
     props.navigation.setOptions({
         headerRight: () => (
-            <Button
-                title='Update Address' 
+            <FontAwesome
+                name='gear'
+                size={30}
                 onPress={() => setModalOpen(true)}
             />
         )
