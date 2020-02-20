@@ -25,8 +25,18 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name='Home' component={AddressForm} />
-          <Stack.Screen name='My Representatives' component={RepsScreen} />
+          <Stack.Screen 
+            name='Home' 
+            component={AddressForm}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name='My Representatives' 
+            component={RepsScreen}
+            options={{
+              headerLeft: null
+            }}
+          />
           <Stack.Screen name='Representative Profile' component={RepDetails}/>
         </Stack.Navigator>
       </NavigationContainer>

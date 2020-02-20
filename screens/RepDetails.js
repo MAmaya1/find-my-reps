@@ -20,11 +20,11 @@ const RepDetails = ({ route })=> {
                 <Text>{repInfo.name}</Text>
 
                  {/* Party Preference */}
-                {repInfo.party.includes('Democrat') ? (
+                {repInfo.party.toLowerCase().includes('democrat') ? (
                     <Text>(D)</Text>
-                ) : repInfo.party.includes('Republican') ? (
+                ) : repInfo.party.toLowerCase().includes('republican') ? (
                     <Text>(R)</Text>
-                ) : repInfo.party.includes('Nonpartisan') ? (
+                ) : repInfo.party.toLowerCase().includes('nonpartisan') ? (
                     <Text>(NP)</Text>
                 ) : <Text>{repInfo.party}</Text>}
 
@@ -54,7 +54,7 @@ const RepDetails = ({ route })=> {
 
             {/* Verify Rep email */}
 
-            {repInfo.email !== undefined && (
+            {repInfo.emails !== undefined && (
                 <View style={styles.container}>
                     <Text>Email</Text>
                     <Text onPress={() => Linking.openURL(`mailto: ${repInfo.emails[0]}`)}>{repInfo.emails}</Text>
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
       borderBottomWidth: 1,
       borderBottomColor: 'grey'
     },
+    
   });
 
 export default RepDetails;
