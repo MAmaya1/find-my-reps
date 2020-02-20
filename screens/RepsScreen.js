@@ -1,14 +1,36 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 // Import RepsList Component
-
 import RepsList from '../components/RepsList';
 
+// Import ModalScreen
+import ModalScren from '../screens/ModalScreen';
+import ModalScreen from '../screens/ModalScreen';
+
 const RepsView = props => {
+
+    // Open and close modal
+    const [modalOpen, setModalOpen] = useState(false);
+    
+    // Header navigaion options
+    props.navigation.setOptions({
+        headerRight: () => (
+            <Button
+                title='Update Address' 
+                onPress={() => setModalOpen(true)}
+            />
+        )
+    })
+
     return (
         <View>
+            <ModalScreen 
+                modalOpen={modalOpen}
+                closeModal={() => setModalOpen(false)}
+                navigation={props.navigation}
+            />
             {props.fetchingReps && (
                 <Text>Loading reps...</Text>
             )}
