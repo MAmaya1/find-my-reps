@@ -14,7 +14,7 @@ const RepsList = props => {
             {divisionNames.map((division, index) => (
                 props.reps.divisions[division].officeIndices !== undefined && (
                     <View key={index}>
-                        <Text style={styles.title}>{props.reps.divisions[division].name}</Text>
+                        <Text style={styles.division}>{props.reps.divisions[division].name}</Text>
                         {props.reps.divisions[division].officeIndices.map(officeIndex => (
                                 props.reps.offices[officeIndex].officialIndices.map((officialIndex, index) => (
                                     <RepCard 
@@ -35,8 +35,10 @@ const RepsList = props => {
 // StyleSheet
 
 const styles = StyleSheet.create({
-    title: {
-      backgroundColor: 'lightblue'
+    division: {
+      backgroundColor: 'lightblue',
+      padding: 7,
+      fontSize: 17
     },
   });
 
