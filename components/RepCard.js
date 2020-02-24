@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { getOrientationAsync } from 'expo/build/ScreenOrientation/ScreenOrientation';
 
 const RepCard = props => {
     return(
@@ -8,30 +9,74 @@ const RepCard = props => {
                 repInfo: props.rep,
                 repTitle: props.repTitle.name
             })}
+            style={styles.cardContainer}
         >
 
             {/* Verify Rep photo source */}
             <Image 
-                style={{width: 100, height: 100}}
+                style={styles.image}
                 source={props.rep.photoUrl ? {uri: props.rep.photoUrl} : require('../img/profile.jpg')}
+                resizeMode='contain'
             />
 
-            {/* Rep name */}
-            <Text>{props.rep.name}</Text>
-            
-            {/* Rep title */}
-            <Text>{props.repTitle.name}</Text>
+            <View style={styles.textbox}>
+                <View style={styles.namebox}>
+                    {/* Rep name */}
+                    <Text style={styles.name}>{props.rep.name} </Text>
 
-            {/* Party Preference */}
-            {props.rep.party.toLowerCase().includes('democrat') ? (
-                <Text>(D)</Text>
-            ) : props.rep.party.toLowerCase().includes('republican') ? (
-                <Text>(R)</Text>
-            ) : props.rep.party.toLowerCase().includes('nonpartisan') ? (
-                <Text>(NP)</Text>
-            ): <Text>{props.rep.party}</Text>}
+                    {/* Party Preference */}
+                    {props.rep.party.toLowerCase().includes('democrat') ? (
+                        <Text style={styles.blue}>(D)</Text>
+                    ) : props.rep.party.toLowerCase().includes('republican') ? (
+                        <Text style={styles.red}>(R)</Text>
+                    ) : props.rep.party.toLowerCase().includes('nonpartisan') ? (
+                        <Text style={styles.grey}>(NP)</Text>
+                    ): <Text>({props.rep.party})</Text>}
+                </View>
+                
+                {/* Rep title */}
+                <Text>{props.repTitle.name}</Text>
+            </View>
         </TouchableOpacity>
     )
 }
+
+// StyleSheet
+
+const styles = StyleSheet.create({
+    cardContainer: {
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderColor: 'lightgrey',
+        paddingTop: 8,
+        paddingBottom: 8
+    },
+    image: {
+        width: 80,
+        height: 80
+    },
+    textbox: {
+        justifyContent: 'center'
+    },
+    namebox: {
+        flexDirection: 'row'
+    },
+    name: {
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    blue : {
+        color: 'blue',
+        fontWeight: 'bold'
+    },
+    red: {
+        color: 'red',
+        fontWeight: 'bold'
+    },
+    grey: {
+        color: 'grey',
+        fontWeight: 'bold'
+    }
+})
 
 export default RepCard;
