@@ -7,7 +7,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import RepsList from '../components/RepsList';
 
 // Import ModalScreen
-import ModalScren from '../screens/ModalScreen';
 import ModalScreen from '../screens/ModalScreen';
 
 const RepsView = props => {
