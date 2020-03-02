@@ -6,50 +6,54 @@ const RepDetails = ({ route })=> {
     const { repInfo } = route.params;
     const { repTitle } = route.params;
 
+    // Get Party Preference to render alongside Rep Name
+    let partyPreference = repInfo.party.toLowerCase().includes('democrat') ? (
+        <Text style={styles.blue}>D</Text>
+    ) : repInfo.party.toLowerCase().includes('republican') ? (
+        <Text style={styles.red}>R</Text>
+    ) : repInfo.party.toLowerCase().includes('nonpartisan') ? (
+        <Text style={styles.grey}>NP</Text>
+    ) : <Text style={styles.grey}>{repInfo.party}</Text>
+
     return(
-        <View>
+        <View style={styles.main}>
 
             {/* General profile */}
-            <View style={styles.container}>
+            <View style={styles.profileContainer}>
 
                 <Image 
-                    style={{width: 180, height: 180}}
+                    style={styles.image}
                     source={repInfo.photoUrl ? {uri: repInfo.photoUrl} : require('../img/profile.jpg')}
+                    resizeMode='contain'
                 />
 
-                <Text>{repInfo.name}</Text>
+                <View style={styles.infobox}>
+        
+                    {/* Name and Party Preference */}
+                    <Text style={styles.name}>{repInfo.name} ({partyPreference})</Text>
 
-                 {/* Party Preference */}
-                {repInfo.party.toLowerCase().includes('democrat') ? (
-                    <Text>(D)</Text>
-                ) : repInfo.party.toLowerCase().includes('republican') ? (
-                    <Text>(R)</Text>
-                ) : repInfo.party.toLowerCase().includes('nonpartisan') ? (
-                    <Text>(NP)</Text>
-                ) : <Text>{repInfo.party}</Text>}
+                    {/* Rep job title */}
+                    <Text style={styles.title}>{repTitle}</Text>
 
-                {/* Rep job title */}
-                <Text>{repTitle}</Text>
+                    {/* Verify repInfo contains address before mapping*/}
+                    {repInfo.address !== undefined && (
+                        <View style={styles.addressBox}>
+                            {repInfo.address.map((address, index) => (
+                            <View key={index}>
+                                <Text>{'\n'}{address['line1']}</Text>
+                                {address['line2'] && <Text>{address['line2']} {address['line3']}</Text>}
+                                <Text>{address['city']}, {address['state']} {address['zip']}</Text>
+                            </View>
+                        ))}
+                    </View>
+                    )}
+                </View>
             </View>
-
-            {/* Verify repInfo contains address before mapping*/}
-            {repInfo.address !== undefined && (
-                <View style={styles.container}>
-                    <Text>Address</Text>
-                    {repInfo.address.map((address, index) => (
-                     <View key={index}>
-                        <Text>{address['line1']}</Text>
-                        <Text>{address['line2']} {address['line3']}</Text>
-                        <Text>{address['city']}, {address['state']} {address['zip']}</Text>
-                     </View>
-                 ))}
-             </View>
-            )}
 
             {/* TODO: refactor links for iOS */}
             <View style={styles.container}>
                 <Text>Phone</Text>
-                <Text onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>
+                <Text style={styles.link} onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>
             </View>
 
             {/* Verify Rep email */}
@@ -57,15 +61,15 @@ const RepDetails = ({ route })=> {
             {repInfo.emails !== undefined && (
                 <View style={styles.container}>
                     <Text>Email</Text>
-                    <Text onPress={() => Linking.openURL(`mailto: ${repInfo.emails[0]}`)}>{repInfo.emails}</Text>
+                    <Text style={styles.link} onPress={() => Linking.openURL(`mailto: ${repInfo.emails[0]}`)}>{repInfo.emails}</Text>
                 </View>
             )}
 
-            {/* Verify rep website */}
+            {/* Verify Rep website */}
             {repInfo.urls !== undefined && (
                 <View style={styles.container}>
                     <Text>Website</Text>
-                    <Text onPress={() => Linking.openURL(repInfo.urls[0])}>{repInfo.urls}</Text>
+                    <Text style={styles.link} onPress={() => Linking.openURL(repInfo.urls[0])}>{repInfo.urls}</Text>
                 </View>
             )}
 
@@ -75,17 +79,17 @@ const RepDetails = ({ route })=> {
                     channel.type.toLowerCase() === 'facebook' ? (
                         <View style={styles.container} key={index}>
                             <Text>Facebook</Text>
-                            <Text onPress={() => Linking.openURL(`https://facebook.com/${channel.id}`)}>{channel.id}</Text>
+                            <Text style={styles.link} onPress={() => Linking.openURL(`https://facebook.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'twitter' ? (
                         <View style={styles.container} key={index}>
                             <Text>Twitter</Text>
-                            <Text onPress={() => Linking.openURL(`https://twitter.com/${channel.id}`)}>{channel.id}</Text>
+                            <Text style={styles.link} onPress={() => Linking.openURL(`https://twitter.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'youtube' ? (
                         <View style={styles.container} key={index}>
                             <Text>YouTube</Text>
-                            <Text onPress={() => Linking.openURL(`https://youtube.com/${channel.id}`)}>{channel.id}</Text>
+                            <Text style={styles.link} onPress={() => Linking.openURL(`https://youtube.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : null
                 ))
@@ -97,11 +101,55 @@ const RepDetails = ({ route })=> {
 // StyleSheet
 
 const styles = StyleSheet.create({
-    container: {
-      borderBottomWidth: 1,
-      borderBottomColor: 'grey'
+    profileContainer: {
+        flexDirection: 'row',
+        paddingTop: 15,
+        paddingBottom: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: 'grey',
+        marginLeft: 18,
+        marginRight: 18
     },
-    
+    container: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        padding: 15,
+        marginLeft: 18,
+        marginRight: 18,
+        borderBottomWidth: 1,
+        borderBottomColor: 'grey',
+    },
+    image: {
+        width: 144,
+        height: 180,
+        marginRight: 18
+    },
+    infobox: {
+        width: '55%'
+    },
+    name: {
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+    title: {
+        fontSize: 16,
+        flexShrink: 1
+    },
+    blue : {
+        color: 'blue',
+        fontWeight: 'bold'
+    },
+    red: {
+        color: 'red',
+        fontWeight: 'bold'
+    },
+    grey: {
+        color: 'grey',
+        fontWeight: 'bold'
+    },
+    link: {
+        color: 'blue'
+    }
   });
 
 export default RepDetails;

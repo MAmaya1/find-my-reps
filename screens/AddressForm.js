@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, Button, View } from 'react-native';
+import { StyleSheet, Text, TextInput, Button, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
 // Import Actions
@@ -10,9 +10,21 @@ const AddressForm = props => {
 
     const [userAddress, setAddress] = useState('');
 
+
+    // Store user address
+    const storeAddress = async () => {
+        try {
+            await AsyncStorage.setItem('address', userAddress)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // Submit user address
     submitAddress = () => {
         // TODO: add address validation besides successful API call
         props.getReps(userAddress);
+        storeAddress();
         props.navigation.navigate('My Representatives');
     }
 
