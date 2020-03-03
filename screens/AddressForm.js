@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, Button, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
 // Import Actions
-
 import { getReps } from '../actions/index';
 
 const AddressForm = props => {
 
     const [userAddress, setAddress] = useState('');
 
-
-    // Store user address
+    // Store user address to AsyncStorage
     const storeAddress = async () => {
         try {
             await AsyncStorage.setItem('address', userAddress)
