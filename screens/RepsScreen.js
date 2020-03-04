@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -10,7 +10,6 @@ import RepsList from '../components/RepsList';
 import ModalScreen from '../screens/ModalScreen';
 
 const RepsView = props => {
-
     // Open and close modal
     const [modalOpen, setModalOpen] = useState(false);
     
@@ -35,11 +34,14 @@ const RepsView = props => {
             {props.fetchingReps && (
                 <Text>Loading reps...</Text>
             )}
-            {props.reps && !props.fetchingReps && (
+            {Object.keys(props.reps).length > 0 && !props.fetchingReps && (
                 <RepsList 
                     reps={props.reps}
                     navigation={props.navigation}
                 />
+            )}
+            {Object.keys(props.reps).length === 0 && !props.fetchingReps && !props.fetchingRepsError && (
+                <Text>No reps to show.</Text>
             )}
             {props.fetchingRepsError && (
                 <Text>{props.fetchingRepsError}</Text>
@@ -58,4 +60,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {})(RepsView);
+export default connect(mapStateToProps, {getReps})(RepsView);
