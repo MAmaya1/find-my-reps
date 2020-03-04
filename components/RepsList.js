@@ -36,13 +36,13 @@ const RepsList = props => {
 
 const styles = StyleSheet.create({
     division: {
-      backgroundColor: 'lightblue',
+      backgroundColor: '#B7D8D6',
       paddingLeft: 7,
       paddingRight: 7,
       paddingTop: 8,
       paddingBottom: 8,
       fontSize: 16.5,
-      borderBottomWidth: 1,
+      borderBottomWidth: 2,
       borderTopWidth: 1,
       borderColor: 'lightgrey',
     },

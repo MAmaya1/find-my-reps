@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -20,11 +20,16 @@ const RepsView = props => {
     // Header navigaion options
     props.navigation.setOptions({
         headerRight: () => (
-            <FontAwesome
-                name='gear'
-                size={30}
+            <TouchableOpacity 
+                style={styles.highlight}
                 onPress={() => setModalOpen(true)}
-            />
+            >
+                <FontAwesome
+                    name='gear'
+                    size={30}
+                    style={styles.gear}
+                />
+            </TouchableOpacity>
         )
     })
 
@@ -40,7 +45,9 @@ const RepsView = props => {
                 navigation={props.navigation}
             />
             {props.fetchingReps && (
-                <Text>Loading reps...</Text>
+                <View>
+                <ActivityIndicator style={styles.loader} size='large' color='#324644' />
+                </View>
             )}
             {Object.keys(props.reps).length > 0 && !props.fetchingReps && (
                 <RepsList 
@@ -49,10 +56,10 @@ const RepsView = props => {
                 />
             )}
             {Object.keys(props.reps).length === 0 && !props.fetchingReps && !props.fetchingRepsError && (
-                <Text>No reps to show.</Text>
+                <Text style={styles.message}>There are no reps to display.</Text>
             )}
             {props.fetchingRepsError && (
-                <Text>{props.fetchingRepsError}</Text>
+                <Text style={styles.message, styles.red}>{props.fetchingRepsError}</Text>
             )}
         </View>
     )
@@ -68,5 +75,22 @@ const mapStateToProps = state => {
         fetchingRepsError: state.fetchingRepsError
     }
 }
+
+// StyleSheet
+
+const styles = StyleSheet.create({
+    loader: {
+        height: '100%'
+    },
+    gear: {
+        color: 'lightgrey',
+        marginRight: 18
+    },
+    message: {
+        marginTop: 18,
+        marginLeft: 18,
+        fontStyle: 'italic'
+    }
+})
 
 export default connect(mapStateToProps, {getReps})(RepsView);

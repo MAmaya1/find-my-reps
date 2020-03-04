@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
         borderBottomColor: 'grey',
     },
     image: {
-        width: 144,
-        height: 180,
+        width: 120,
+        height: 160,
         marginRight: 18
     },
     infobox: {
@@ -137,11 +137,11 @@ const styles = StyleSheet.create({
         flexShrink: 1
     },
     blue : {
-        color: 'blue',
+        color: '#1B72AB',
         fontWeight: 'bold'
     },
     red: {
-        color: 'red',
+        color: '#FE615A',
         fontWeight: 'bold'
     },
     grey: {
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     link: {
-        color: 'blue'
+        color: '#1B72AB'
     }
   });
 

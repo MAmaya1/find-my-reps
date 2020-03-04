@@ -27,7 +27,18 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         {/* TODO: If address exists in AsyncStorage navigate to 'My Reps', if not navigate to 'Home' */}
-        <Stack.Navigator initialRouteName={'Home'}>
+        <Stack.Navigator 
+          initialRouteName={'Home'}
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#81878F'
+            },
+            headerTitleStyle: {
+              color: '#FFF',
+              fontWeight: 'bold'
+            }
+          }}
+        >
           <Stack.Screen 
             name='Home' 
             component={AddressForm}

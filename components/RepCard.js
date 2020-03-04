@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         borderColor: 'lightgrey',
         paddingTop: 8,
         paddingBottom: 8,
-        marginLeft: 8,
-        marginRight: 8
+        paddingLeft: 8,
+        paddingRight: 8
     },
     image: {
         width: 64,
@@ -65,11 +65,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     blue : {
-        color: 'blue',
+        color: '#1B72AB',
         fontWeight: 'bold'
     },
     red: {
-        color: 'red',
+        color: '#FE615A',
         fontWeight: 'bold'
     },
     grey: {
