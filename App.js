@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Import Screens
 
@@ -13,12 +14,13 @@ import RepsScreen from './screens/RepsScreen';
 import RepDetails from './screens/RepDetails';
 
 // Redux Store
-
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // Stack Navigator
-
 const Stack = createStackNavigator();
+
+// Extended StyleSheet
+EStyleSheet.build();
 
 export default function App() {
   return (

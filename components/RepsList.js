@@ -37,8 +37,14 @@ const RepsList = props => {
 const styles = StyleSheet.create({
     division: {
       backgroundColor: 'lightblue',
-      padding: 7,
-      fontSize: 17
+      paddingLeft: 7,
+      paddingRight: 7,
+      paddingTop: 8,
+      paddingBottom: 8,
+      fontSize: 16.5,
+      borderBottomWidth: 1,
+      borderTopWidth: 1,
+      borderColor: 'lightgrey',
     },
   });
 
