@@ -9,6 +9,7 @@ import {
 // Set Initial State
 
 const initialState = {
+    // userAddress: '',
     reps: {},
     fetchingReps: false,
     fetchingRepsError: null

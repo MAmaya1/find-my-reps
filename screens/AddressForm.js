@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, Button, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
+// Import Actions
+import { getReps } from '../actions/index';
+
 const AddressForm = props => {
 
-    const [userAddress, setAddress] = useState(null);
+    const [userAddress, setAddress] = useState('');
 
     // Store user address to AsyncStorage
     storeAddress = async () => {
@@ -18,6 +21,7 @@ const AddressForm = props => {
     // Submit user address
     submitAddress = () => {
         // TODO: add address validation besides successful API call
+        props.getReps(userAddress);
         storeAddress();
         props.navigation.navigate('My Representatives');
     }
@@ -56,4 +60,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default connect(mapStateToProps, {})(AddressForm);
+export default connect(mapStateToProps, {getReps})(AddressForm);
