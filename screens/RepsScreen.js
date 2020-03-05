@@ -46,7 +46,7 @@ const RepsView = props => {
             />
             {props.fetchingReps && (
                 <View>
-                <ActivityIndicator style={styles.loader} size='large' color='#324644' />
+                <ActivityIndicator style={styles.loader} size='large' color='#4D6466' />
                 </View>
             )}
             {Object.keys(props.reps).length > 0 && !props.fetchingReps && (
