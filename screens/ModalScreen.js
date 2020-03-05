@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stylesheet, View, Button, Linking } from 'react-native';
+import { StyleSheet, View, Button, Linking, TouchableOpacity, Text } from 'react-native';
 import Modal from "react-native-modal";
 
 const ModalScreen = props => {
@@ -10,21 +10,62 @@ const ModalScreen = props => {
             animationOut='fadeOut'
             onBackdropPress={() => props.closeModal()}
             onSwipeComplete={() => props.closeModal()}
-            hideModalContentWhileAnimating
+            hideModalContentWhileAnimating={true}
         >
-            <View>
-                <Button 
-                    title='Change Address'
-                    onPress={() => props.navigation.navigate('Home')}
-                />
-                {/* Report Data Errors to Google */}
-                <Button
-                    title='Report Data Error'
-                    onPress={() => Linking.openURL('https://docs.google.com/forms/d/e/1FAIpQLScFpFTOkTpm0YoerLLprY_ySS9PRXLsu27SM01hebHqkefW2Q/viewform')}
-                />
+            <View style={styles.container}>
+                <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => { props.closeModal(); return props.navigation.navigate('Home')}}
+                    style={styles.button}
+                >
+                    <Text style={styles.buttonText}>Change Address</Text>
+                </TouchableOpacity>
+
+                <View style={styles.bottomButton}>
+                    {/* Report Data Errors to Google */}
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        onPress={() => Linking.openURL('https://docs.google.com/forms/d/e/1FAIpQLScFpFTOkTpm0YoerLLprY_ySS9PRXLsu27SM01hebHqkefW2Q/viewform')}
+                        style={styles.button}
+                    >
+                        <Text style={styles.buttonText}>Report Data Error</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </Modal>
     )
 }
+
+// StyleSheet
+
+const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        alignItems: 'center',
+        height: 160,
+        marginLeft: 30,
+        marginRight: 30,
+        paddingLeft: 20,
+        paddingRight: 20,
+        backgroundColor: '#789E9E'
+    },
+    button: {
+        height: 80,
+        width: '100%',
+        margin: 0
+    },
+    bottomButton: {
+        borderTopWidth: 1,
+        borderColor: '#FFF',
+        width: '100%'
+    },
+    buttonText: {
+        lineHeight: 80,
+        textAlign: 'center',
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: '#FFF'
+    }
+})
 
 export default ModalScreen;
