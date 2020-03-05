@@ -113,15 +113,16 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: "space-between",
-        padding: 15,
+        paddingTop: 15,
+        paddingBottom: 15,
         marginLeft: 18,
         marginRight: 18,
         borderBottomWidth: 1,
         borderBottomColor: 'grey',
     },
     image: {
-        width: 144,
-        height: 180,
+        width: 120,
+        height: 160,
         marginRight: 18
     },
     infobox: {
@@ -136,11 +137,11 @@ const styles = StyleSheet.create({
         flexShrink: 1
     },
     blue : {
-        color: 'blue',
+        color: '#1B72AB',
         fontWeight: 'bold'
     },
     red: {
-        color: 'red',
+        color: '#FE615A',
         fontWeight: 'bold'
     },
     grey: {
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     link: {
-        color: 'blue'
+        color: '#1B72AB'
     }
   });
 

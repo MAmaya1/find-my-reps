@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 // Import Screens
 
@@ -13,19 +14,31 @@ import RepsScreen from './screens/RepsScreen';
 import RepDetails from './screens/RepDetails';
 
 // Redux Store
-
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // Stack Navigator
-
 const Stack = createStackNavigator();
+
+// Extended StyleSheet
+EStyleSheet.build();
 
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
         {/* TODO: If address exists in AsyncStorage navigate to 'My Reps', if not navigate to 'Home' */}
-        <Stack.Navigator initialRouteName={'Home'}>
+        <Stack.Navigator 
+          initialRouteName={'Home'}
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#81878F'
+            },
+            headerTitleStyle: {
+              color: '#FFF',
+              fontWeight: 'bold'
+            }
+          }}
+        >
           <Stack.Screen 
             name='Home' 
             component={AddressForm}
