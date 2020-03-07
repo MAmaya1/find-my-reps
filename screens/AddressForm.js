@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, Button, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
 // Import Actions
 import { getReps } from '../actions/index';
 
+// Import Components
+import GoogleAutoComplete from '../components/GoogleAutoComplete';
+
 const AddressForm = props => {
 
     const [userAddress, setAddress] = useState('');
+    const [completeAddress, setCompleteAddress] = useState('');
     const [addressError, setAddressError] = useState(false);
 
     // Store user address to AsyncStorage
@@ -19,13 +23,17 @@ const AddressForm = props => {
     //     }
     // }
 
+    // 
+
     // Submit user address
     submitAddress = () => {
         if (userAddress.length === 0) {
             setAddressError(true);
         } else {
-            props.getReps(userAddress);
+            props.getReps(completeAddress);
             // storeAddress();
+            setCompleteAddress('');
+            setAddress('')
             props.navigation.navigate('My Representatives');
         }
     }
@@ -34,10 +42,16 @@ const AddressForm = props => {
         <View style={styles.container}>
             <Text>Please enter your address</Text>
             <TextInput
+                placeholder='Search'
                 style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
                 onChangeText={text => setAddress(text)}
+                defaultValue={completeAddress}
+                autoFocus={true}
             />
-            <GooglePlacesInput />
+            <GoogleAutoComplete 
+                userInput={userAddress} 
+                setCompleteAddress={setCompleteAddress} 
+            />
             <Button
                 title='Submit'
                 onPress={submitAddress}
