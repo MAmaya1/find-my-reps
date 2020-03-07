@@ -20,27 +20,56 @@ const GoogleAutoComplete = props => {
 
     getPredictionsDebounced = _.debounce(getPredictions, 1000);
 
-   useEffect(() => {
-       getPredictionsDebounced();
-   }, [props.userInput]) 
+    useEffect(() => {
+        getPredictionsDebounced();
+    }, [props.userInput]) 
 
     return (
-        <>
+        <View style={styles.container}>
             {addressPredictions.length > 0 && (
-                <View>
+                <View style={styles.predictionsBox}>
                     {addressPredictions.map(prediction => (
                         <Text 
                             key={prediction.id}
-                            onPress={() => { props.setCompleteAddress(prediction.description); setPredictions([]);}}
+                            onPress={() => { 
+                                props.setCompleteAddress(prediction.description.slice(0, -5));
+                                setPredictions([]);
+                            }}
+                            style={styles.address}
                         >
-                            {prediction.description}
+                            {prediction.description.slice(0, -5)}
                         </Text>
                     ))}
-                    <Image source={require('../img/powered_by_google.png')}/>
+                    <Image 
+                        source={require('../img/powered_by_google.png')}
+                        style={styles.image}
+                        resizeMode='contain'
+                    />
                 </View>
             )}
-        </>
+        </View>
     )
 }
+
+// StyleSheet
+
+const styles = StyleSheet.create({
+    predictionsBox: {
+        backgroundColor: '#B7D8D6',
+        width: 250,
+        padding: 5
+    },
+    address: {
+        paddingLeft: 2,
+        paddingRight: 2,
+        paddingTop: 3,
+        paddingBottom: 3,
+        borderBottomWidth: 1,
+        borderColor: '#81878F'
+    },
+    image: {
+        width: 100
+    }
+})
 
 export default GoogleAutoComplete;
