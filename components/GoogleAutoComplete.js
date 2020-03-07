@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
         borderColor: '#81878F'
     },
     image: {
-        width: 100
+        width: 100,
+        marginTop: 4
     }
 })
 
