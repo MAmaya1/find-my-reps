@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Keyboard } from 'react-native';
 import _ from 'lodash';
 import { GOOGLE_KEY } from 'react-native-dotenv';
 
@@ -25,7 +25,10 @@ const GoogleAutoComplete = props => {
     }, [props.userInput]) 
 
     return (
-        <View style={styles.container}>
+        <View 
+            style={styles.container} 
+            keyboardShouldPersistTaps={'handled'}
+        >
             {addressPredictions.length > 0 && (
                 <View style={styles.predictionsBox}>
                     {addressPredictions.map(prediction => (
@@ -55,15 +58,16 @@ const GoogleAutoComplete = props => {
 
 const styles = StyleSheet.create({
     predictionsBox: {
-        backgroundColor: '#B7D8D6',
-        width: 250,
-        padding: 5
+        backgroundColor: '#FFF',
+        width: '100%',
+        padding: 5,
+        zIndex: 5
     },
     address: {
         paddingLeft: 2,
         paddingRight: 2,
-        paddingTop: 3,
-        paddingBottom: 3,
+        paddingTop: 10,
+        paddingBottom: 10,
         borderBottomWidth: 1,
         borderColor: '#81878F'
     },
