@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import _ from 'lodash';
 import { GOOGLE_KEY } from 'react-native-dotenv';
 
@@ -25,10 +25,7 @@ const GoogleAutoComplete = props => {
     }, [props.userInput]) 
 
     return (
-        <View 
-            style={styles.container} 
-            keyboardShouldPersistTaps={'handled'}
-        >
+        <View style={styles.container}>
             {addressPredictions.length > 0 && (
                 <View style={styles.predictionsBox}>
                     {addressPredictions.map(prediction => (
