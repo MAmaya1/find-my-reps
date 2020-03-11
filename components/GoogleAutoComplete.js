@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Keyboard } from 'react-native';
 import _ from 'lodash';
 import { GOOGLE_KEY } from 'react-native-dotenv';
 
@@ -32,6 +32,7 @@ const GoogleAutoComplete = props => {
                         <Text 
                             key={prediction.id}
                             onPress={() => { 
+                                Keyboard.dismiss();
                                 props.setCompleteAddress(prediction.description.slice(0, -5));
                                 setPredictions([]);
                             }}
