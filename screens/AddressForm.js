@@ -34,7 +34,9 @@ const AddressForm = props => {
     //     }
     // }
 
-    // 
+    useEffect(() => {
+        setAddressError(false);
+    }, [])
 
     // Submit user address
     submitAddress = () => {
@@ -56,17 +58,18 @@ const AddressForm = props => {
                     source={require('../img/background.png')}
                     style={styles.backgroundImage}
                 >
-                    <View style={styles.content}>
-                        <Text style={styles.mainHeading}>Welcome to Find My Reps</Text>
-                        <Text style={styles.subHeading}>Find My Reps is provided as a public service to find your elected officials along with their website, email, phone number, and mailing address.</Text>
-                        <KeyboardAvoidingView 
-                            style={styles.shiftingContainer}
-                            behavior='position'
-                            keyboardVerticalOffset={15}
-                            enabled
-                        >
+                    <KeyboardAvoidingView
+                        behavior='position'
+                        keyboardVerticalOffset={180}
+                    >
+                        <View style={styles.content}>
+                            <Text style={styles.mainHeading}>Welcome to Find My Reps</Text>
+                            <Text style={styles.subHeading}>Find My Reps is provided as a public service to find your elected officials along with their website, email, phone number, and mailing address.</Text>
                             <View style={styles.textInputWrapper}>
-                                <Text style={styles.addressText}>Please enter your registered voting address</Text>
+                                {!addressError ?
+                                    <Text style={styles.addressText}>Please enter your registered voting address</Text> 
+                                    : <Text style={styles.errorMessage}>*Please enter your registered voting address</Text>
+                                }
                                 <TextInput
                                     placeholder='Search'
                                     style={styles.textInput}
@@ -82,18 +85,15 @@ const AddressForm = props => {
 
                                 {/* Submit Button */}
                                 <TouchableOpacity
-                                    activeOpacity={0.7}
+                                    activeOpacity={0.8}
                                     onPress={submitAddress}
                                     style={styles.submitButton}
                                 >
-                                    <Text style={styles.buttonText}>Submit</Text>
+                                    <Text style={styles.buttonText}>SUBMIT</Text>
                                 </TouchableOpacity>
-                                {addressError && (
-                                    <Text style={styles.errorMessage}>Please enter a valid address</Text>
-                                )}
                             </View>
-                        </KeyboardAvoidingView>
-                    </View>
+                        </View>
+                    </KeyboardAvoidingView>
                 </ImageBackground>
             </View>
         </TouchableWithoutFeedback>
@@ -126,15 +126,13 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
     },
-    shiftingContainer: {
-        height: 400
-    },
     textInputWrapper: {
-        backgroundColor: '#B7D8D6',
+        backgroundColor: '#86B0AC',
         paddingTop: 20,
+        paddingBottom: 20,
         paddingLeft: 10,
         paddingRight: 10,
-        height: 170
+        minHeight: 170
     },
     mainHeading: {
         fontSize: 25,
@@ -144,11 +142,11 @@ const styles = StyleSheet.create({
     subHeading: {
         fontSize: 15,
         textAlign: 'center',
-        paddingBottom: 20
+        paddingBottom: 40
     },
     addressText: {
         textAlign: 'center',
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     textInput: {
         height: 40,
@@ -157,23 +155,27 @@ const styles = StyleSheet.create({
         padding: 5,
         borderWidth: 1,
         width: '100%',
-        backgroundColor: '#FFF'
+        backgroundColor: '#FAF9F7'
     },
     submitButton: {
         width: 140,
         height: 40,
         bottom: 20,
-        backgroundColor: 'blue',
+        backgroundColor: '#EED074',
         alignSelf: 'center',
         position: 'absolute'
     },
     buttonText: {
         textAlign: 'center',
-        lineHeight: 40
+        lineHeight: 40,
+        fontWeight: 'bold',
+        letterSpacing: 1
     },
     errorMessage: {
         textAlign: 'center',
-        color: 'red'
+        color: '#CC3B33',
+        paddingBottom: 10,
+        letterSpacing: 0.1
     }
   });
 
