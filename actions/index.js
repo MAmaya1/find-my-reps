@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GOOGLE_KEY} from 'react-native-dotenv'
+import { GOOGLE_KEY } from 'react-native-dotenv';
 
 export const GET_REPS_START = 'GET_REPS_START';
 export const GET_REPS_SUCCESS = 'GET_REPS_SUCCESS';

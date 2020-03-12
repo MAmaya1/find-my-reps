@@ -36,7 +36,7 @@ const RepsList = props => {
 
 const styles = StyleSheet.create({
     division: {
-      backgroundColor: '#B7D8D6',
+      backgroundColor: '#B2DED8',
       paddingLeft: 7,
       paddingRight: 7,
       paddingTop: 8,
