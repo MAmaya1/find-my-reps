@@ -34,9 +34,9 @@ const AddressForm = props => {
     //     }
     // }
 
-    useEffect(() => {
-        setAddressError(false);
-    }, [])
+    // useEffect(() => {
+    //     setAddressError(false);
+    // }, [])
 
     // Submit user address
     submitAddress = () => {

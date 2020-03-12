@@ -59,7 +59,7 @@ const RepsView = props => {
                 <Text style={styles.message}>There are no reps to display.</Text>
             )}
             {props.fetchingRepsError && (
-                <Text style={styles.message, styles.red}>{props.fetchingRepsError}</Text>
+                <Text style={styles.errorMessage}>There are no Representatives listed for this address</Text>
             )}
         </View>
     )
@@ -90,6 +90,11 @@ const styles = StyleSheet.create({
         marginTop: 18,
         marginLeft: 18,
         fontStyle: 'italic'
+    },
+    errorMessage: {
+        marginTop: 18,
+        marginLeft: 18,
+        color: '#CC3B33'
     }
 })
 
