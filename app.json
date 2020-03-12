@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "find-my-reps",
+    "name": "Find My Reps",
     "slug": "find-my-reps",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -24,7 +24,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     }
   }
 }
