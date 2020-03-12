@@ -82,7 +82,6 @@ const RepsView = props => {
 
 const mapStateToProps = state => {
     return {
-        userAddress: state.userAddress,
         reps: state.reps,
         fetchingReps: state.fetchingReps,
         fetchingRepsError: state.fetchingRepsError

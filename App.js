@@ -50,7 +50,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator 
           // If address exists in AsyncStorage navigate to 'My Reps', if not navigate to 'Home'
-          initialRouteName={storedAddress !== null ? 'My Representatives' : 'Home'}
+          initialRouteName={'Home'}
           screenOptions={{
             headerStyle: {
               backgroundColor: '#81878F'
