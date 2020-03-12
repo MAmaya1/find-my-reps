@@ -22,7 +22,7 @@ import AddressForm from './components/AddressForm';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['reps']
+  whitelist: ['reps']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
