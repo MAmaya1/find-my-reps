@@ -13,9 +13,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-// Import Actions
-import { getReps } from '../actions/index';
-
 // Import Components
 import GoogleAutoComplete from '../components/GoogleAutoComplete';
 
@@ -26,25 +23,20 @@ const AddressForm = props => {
     const [addressError, setAddressError] = useState(false);
 
     // Store user address to AsyncStorage
-    // storeAddress = async () => {
-    //     try {
-    //         await AsyncStorage.setItem('address', userAddress)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     setAddressError(false);
-    // }, [])
+    storeAddress = async () => {
+        try {
+            await AsyncStorage.setItem('address', completeAddress)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     // Submit user address
     submitAddress = () => {
         if (userAddress.length === 0) {
             setAddressError(true);
         } else {
-            props.getReps(completeAddress);
-            // storeAddress();
+            storeAddress();
             setCompleteAddress('');
             setAddress('')
             props.navigation.navigate('My Representatives');
@@ -179,4 +171,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default connect(mapStateToProps, {getReps})(AddressForm);
+export default connect(mapStateToProps, {})(AddressForm);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { AsyncStorage } from 'react-native';
 
 // Import Screens
 
@@ -23,12 +24,33 @@ const Stack = createStackNavigator();
 EStyleSheet.build();
 
 export default function App() {
+
+  const [storedAddress, setStoredAddress] = useState(null);
+
+  // Check AsyncStorage for stored address
+  const checkAddress = async () => {
+    try {
+        const address = await AsyncStorage.getItem('address');
+        
+        if (address !== null) {
+            setStoredAddress(address);
+            console.log('STORED ADDRESS ===>', storedAddress)
+        }
+    } catch (err) {
+        console.log('Error retrieving stored address');
+    }
+  }
+
+  useEffect(() => {
+    checkAddress();
+  })
+
   return (
     <Provider store={store}>
       <NavigationContainer>
-        {/* TODO: If address exists in AsyncStorage navigate to 'My Reps', if not navigate to 'Home' */}
         <Stack.Navigator 
-          initialRouteName={'Home'}
+          // If address exists in AsyncStorage navigate to 'My Reps', if not navigate to 'Home'
+          initialRouteName={storedAddress !== null ? 'My Representatives' : 'Home'}
           screenOptions={{
             headerStyle: {
               backgroundColor: '#81878F'

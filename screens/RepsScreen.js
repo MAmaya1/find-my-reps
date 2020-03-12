@@ -33,9 +33,22 @@ const RepsView = props => {
         )
     })
 
-    // useEffect(() => {
-    //     props.getReps(props.userAddress);
-    // }, [])
+    // Get user Address from AsyncStorage
+    const getAddress = async () => {
+        try {
+            const address = await AsyncStorage.getItem('address');
+
+            if (address !== null) {
+                props.getReps(address);
+            }
+        } catch (err) {
+            console.log('Error retrieving data')
+        }
+    }
+
+    useEffect(() => {
+        getAddress();
+    }, [])
 
     return (
         <View>
