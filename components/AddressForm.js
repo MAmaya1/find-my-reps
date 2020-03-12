@@ -8,13 +8,15 @@ import {
     TouchableWithoutFeedback, 
     TouchableOpacity,
     Keyboard, 
-    KeyboardAvoidingView, 
-    AsyncStorage 
+    KeyboardAvoidingView
 } from 'react-native';
 import { connect } from 'react-redux';
 
 // Import Components
 import GoogleAutoComplete from '../components/GoogleAutoComplete';
+
+// Import Actions
+import { getReps } from '../actions/index';
 
 const AddressForm = props => {
 
@@ -22,23 +24,14 @@ const AddressForm = props => {
     const [completeAddress, setCompleteAddress] = useState('');
     const [addressError, setAddressError] = useState(false);
 
-    // Store user address to AsyncStorage
-    storeAddress = async () => {
-        try {
-            await AsyncStorage.setItem('address', completeAddress)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     // Submit user address
     submitAddress = () => {
         if (userAddress.length === 0) {
             setAddressError(true);
         } else {
-            storeAddress();
+            props.getReps(completeAddress);
             setCompleteAddress('');
-            setAddress('')
+            setAddress('');
             props.navigation.navigate('My Representatives');
         }
     }
@@ -171,4 +164,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default connect(mapStateToProps, {})(AddressForm);
+export default connect(mapStateToProps, {getReps})(AddressForm);

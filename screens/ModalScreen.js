@@ -15,7 +15,7 @@ const ModalScreen = props => {
             <View style={styles.container}>
                 <TouchableOpacity
                     activeOpacity={0.7}
-                    onPress={() => { props.closeModal(); return props.navigation.navigate('Home')}}
+                    onPress={() => { props.closeModal(); return props.navigation.navigate('Address Form')}}
                     style={styles.button}
                 >
                     <Text style={styles.buttonText}>Change Address</Text>

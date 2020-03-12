@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -8,9 +8,6 @@ import RepsList from '../components/RepsList';
 
 // Import ModalScreen
 import ModalScreen from '../screens/ModalScreen';
-
-// Import Actions
-import { getReps } from '../actions/index';
 
 const RepsView = props => {
 
@@ -32,23 +29,6 @@ const RepsView = props => {
             </TouchableOpacity>
         )
     })
-
-    // Get user Address from AsyncStorage
-    const getAddress = async () => {
-        try {
-            const address = await AsyncStorage.getItem('address');
-
-            if (address !== null) {
-                props.getReps(address);
-            }
-        } catch (err) {
-            console.log('Error retrieving data')
-        }
-    }
-
-    useEffect(() => {
-        getAddress();
-    }, [])
 
     return (
         <View>
@@ -110,4 +90,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(mapStateToProps, {getReps})(RepsView);
+export default connect(mapStateToProps, {})(RepsView);
