@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
