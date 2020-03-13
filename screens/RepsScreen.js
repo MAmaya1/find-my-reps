@@ -15,7 +15,7 @@ const RepsView = props => {
     const [modalOpen, setModalOpen] = useState(false);
     
     return (
-        <View>
+        <View style={styles.container}>
             <Header 
                 navigation={props.navigation}
                 setModalOpen={setModalOpen}
@@ -59,6 +59,9 @@ const mapStateToProps = state => {
 // StyleSheet
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     loader: {
         height: '100%'
     },
