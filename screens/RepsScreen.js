@@ -27,20 +27,22 @@ const RepsView = props => {
             />
             {props.fetchingReps && (
                 <View>
-                <ActivityIndicator style={styles.loader} size='large' color='#4D6466' />
+                    <ActivityIndicator style={styles.loader} size='large' color='#4D6466' />
                 </View>
             )}
-            {Object.keys(props.reps).length > 0 && !props.fetchingReps && (
+            {Object.keys(props.reps).length > 0 && !props.fetchingReps && !props.fetchingRepsError && (
                 <RepsList 
                     reps={props.reps}
                     navigation={props.navigation}
                 />
             )}
+            {/* For valid address entry, but no Rep data */}
             {Object.keys(props.reps).length === 0 && !props.fetchingReps && !props.fetchingRepsError && (
-                <Text style={styles.message}>There are no reps to display.</Text>
+                <Text style={styles.message}>There are no no representatives listed for this address.</Text>
             )}
+            {/* For invalid address entry */}
             {props.fetchingRepsError && (
-                <Text style={styles.errorMessage}>There are no Representatives listed for this address</Text>
+                <Text style={styles.errorMessage}>Please enter a valid address.</Text>
             )}
         </View>
     )
