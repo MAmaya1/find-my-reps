@@ -11,7 +11,7 @@ const HomeScreen = props => {
     return (
         <>
             {Object.keys(props.reps).length > 0 ? (
-                props.navigation.navigate('My Representatives')
+                <RepsScreen navigation={props.navigation} />
             ) : <AddressForm navigation={props.navigation} />}
         </>
     )
