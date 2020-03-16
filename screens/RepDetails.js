@@ -1,10 +1,33 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, Linking } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, Linking, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
-const RepDetails = ({ route })=> {
+// Import Modal Screen
+import ModalScreen from '../screens/ModalScreen';
+
+const RepDetails = ({ route, ...props })=> {
 
     const { repInfo } = route.params;
     const { repTitle } = route.params;
+
+    // Open and close modal
+    const [modalOpen, setModalOpen] = useState(false);
+
+    // Header navigaion options
+    props.navigation.setOptions({
+        headerRight: () => (
+            <TouchableOpacity 
+                style={styles.highlight}
+                onPress={() => setModalOpen(true)}
+            >
+                <FontAwesome
+                    name='gear'
+                    size={30}
+                    style={styles.gear}
+                />
+            </TouchableOpacity>
+        )
+    })
 
     // Get Party Preference to render alongside Rep Name
     let partyPreference = repInfo.party.toLowerCase().includes('democrat') ? (
@@ -17,6 +40,12 @@ const RepDetails = ({ route })=> {
 
     return(
         <View style={styles.main}>
+
+            <ModalScreen 
+                modalOpen={modalOpen}
+                closeModal={() => setModalOpen(false)}
+                navigation={props.navigation}
+            />
 
             {/* General profile */}
             <View style={styles.profileContainer}>
@@ -108,6 +137,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: 'grey',
         marginLeft: 18,
+        marginRight: 18
+    },
+    gear: {
+        color: 'lightgrey',
         marginRight: 18
     },
     container: {

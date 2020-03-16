@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { FontAwesome } from '@expo/vector-icons';
 
-// Import RepsList Component
+// Import Components
+import Header from '../components/Header';
 import RepsList from '../components/RepsList';
 
 // Import ModalScreen
@@ -14,24 +14,12 @@ const RepsView = props => {
     // Open and close modal
     const [modalOpen, setModalOpen] = useState(false);
     
-    // Header navigaion options
-    props.navigation.setOptions({
-        headerRight: () => (
-            <TouchableOpacity 
-                style={styles.highlight}
-                onPress={() => setModalOpen(true)}
-            >
-                <FontAwesome
-                    name='gear'
-                    size={30}
-                    style={styles.gear}
-                />
-            </TouchableOpacity>
-        )
-    })
-
     return (
-        <View>
+        <View style={styles.container}>
+            <Header 
+                navigation={props.navigation}
+                setModalOpen={setModalOpen}
+            />
             <ModalScreen 
                 modalOpen={modalOpen}
                 closeModal={() => setModalOpen(false)}
@@ -39,20 +27,22 @@ const RepsView = props => {
             />
             {props.fetchingReps && (
                 <View>
-                <ActivityIndicator style={styles.loader} size='large' color='#4D6466' />
+                    <ActivityIndicator style={styles.loader} size='large' color='#4D6466' />
                 </View>
             )}
-            {Object.keys(props.reps).length > 0 && !props.fetchingReps && (
+            {Object.keys(props.reps).length > 0 && !props.fetchingReps && !props.fetchingRepsError && (
                 <RepsList 
                     reps={props.reps}
                     navigation={props.navigation}
                 />
             )}
+            {/* For valid address entry, but no Rep data */}
             {Object.keys(props.reps).length === 0 && !props.fetchingReps && !props.fetchingRepsError && (
-                <Text style={styles.message}>There are no reps to display.</Text>
+                <Text style={styles.message}>There are no no representatives listed for this address.</Text>
             )}
+            {/* For invalid address entry */}
             {props.fetchingRepsError && (
-                <Text style={styles.errorMessage}>There are no Representatives listed for this address</Text>
+                <Text style={styles.errorMessage}>Please enter a valid address.</Text>
             )}
         </View>
     )
@@ -71,12 +61,11 @@ const mapStateToProps = state => {
 // StyleSheet
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     loader: {
         height: '100%'
-    },
-    gear: {
-        color: 'lightgrey',
-        marginRight: 18
     },
     message: {
         marginTop: 18,

@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux';
 
 // Import Components
-import GoogleAutoComplete from '../components/GoogleAutoComplete';
+import GoogleAutoComplete from './GoogleAutoComplete';
 
 // Import Actions
 import { getReps } from '../actions/index';
@@ -33,6 +33,7 @@ const AddressForm = props => {
             setCompleteAddress('');
             setAddress('');
             props.navigation.navigate('My Representatives');
+            setAddressError(false);
         }
     }
 
@@ -53,7 +54,7 @@ const AddressForm = props => {
                             <View style={styles.textInputWrapper}>
                                 {!addressError ?
                                     <Text style={styles.addressText}>Please enter your registered voting address</Text> 
-                                    : <Text style={styles.errorMessage}>*Please enter your registered voting address</Text>
+                                    : <Text style={styles.errorMessage}>Please enter your registered voting address</Text>
                                 }
                                 <TextInput
                                     placeholder='Search'

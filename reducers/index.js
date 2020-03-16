@@ -11,7 +11,7 @@ import {
 const initialState = {
     reps: {},
     fetchingReps: false,
-    fetchingRepsError: null
+    fetchingRepsError: false
 }
 
 function reducer(state = initialState, action) {
@@ -19,7 +19,8 @@ function reducer(state = initialState, action) {
         case GET_REPS_START:
             return {
                 ...state,
-                fetchingReps: true
+                fetchingReps: true,
+                fetchingRepsError: false
             }
 
         case GET_REPS_SUCCESS:

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
@@ -47,9 +47,11 @@ export default function App() {
             initialRouteName={'Home'}
             screenOptions={{
               headerStyle: {
-                backgroundColor: '#81878F'
+                backgroundColor: '#81878F',
+                height: 80
               },
               headerTitleStyle: {
+                fontSize: 20,
                 color: '#FFF',
                 fontWeight: 'bold'
               }
@@ -68,11 +70,12 @@ export default function App() {
             <Stack.Screen 
               name='My Representatives' 
               component={RepsScreen}
-              options={{
-                headerLeft: null
-              }}
+              options={{ headerShown: false }}
             />
-            <Stack.Screen name='Representative Profile' component={RepDetails}/>
+            <Stack.Screen 
+              name='Representative Profile' 
+              component={RepDetails}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>
