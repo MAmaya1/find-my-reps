@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Find My Reps",
-    "slug": "find-my-reps",
+    "name": "Rate My Reps",
+    "slug": "rate-my-reps",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
