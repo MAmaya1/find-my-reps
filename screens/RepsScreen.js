@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 // Import Components
@@ -16,34 +16,39 @@ const RepsView = props => {
     
     return (
         <View style={styles.container}>
-            <Header 
-                navigation={props.navigation}
-                setModalOpen={setModalOpen}
-            />
-            <ModalScreen 
-                modalOpen={modalOpen}
-                closeModal={() => setModalOpen(false)}
-                navigation={props.navigation}
-            />
-            {props.fetchingReps && (
-                <View>
-                    <ActivityIndicator style={styles.loader} size='large' color='#4D6466' />
-                </View>
-            )}
-            {Object.keys(props.reps).length > 0 && !props.fetchingReps && !props.fetchingRepsError && (
-                <RepsList 
-                    reps={props.reps}
+            <ImageBackground
+                source={require('../img/reps_background.png')}
+                style={styles.backgroundImage}
+            >
+                <Header 
+                    navigation={props.navigation}
+                    setModalOpen={setModalOpen}
+                />
+                <ModalScreen 
+                    modalOpen={modalOpen}
+                    closeModal={() => setModalOpen(false)}
                     navigation={props.navigation}
                 />
-            )}
-            {/* For valid address entry, but no Rep data */}
-            {Object.keys(props.reps).length === 0 && !props.fetchingReps && !props.fetchingRepsError && (
-                <Text style={styles.message}>There are no no representatives listed for this address.</Text>
-            )}
-            {/* For invalid address entry */}
-            {props.fetchingRepsError && (
-                <Text style={styles.errorMessage}>Please enter a valid address.</Text>
-            )}
+                {props.fetchingReps && (
+                    <View>
+                        <ActivityIndicator style={styles.loader} size='large' color='#4D6466' />
+                    </View>
+                )}
+                {Object.keys(props.reps).length > 0 && !props.fetchingReps && !props.fetchingRepsError && (
+                    <RepsList 
+                        reps={props.reps}
+                        navigation={props.navigation}
+                    />
+                )}
+                {/* For valid address entry, but no Rep data */}
+                {Object.keys(props.reps).length === 0 && !props.fetchingReps && !props.fetchingRepsError && (
+                    <Text style={styles.message}>There are no no representatives listed for this address.</Text>
+                )}
+                {/* For invalid address entry */}
+                {props.fetchingRepsError && (
+                    <Text style={styles.errorMessage}>Please enter a valid address.</Text>
+                )}
+            </ImageBackground>
         </View>
     )
 }
@@ -63,6 +68,10 @@ const mapStateToProps = state => {
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%'
     },
     loader: {
         height: '100%'
