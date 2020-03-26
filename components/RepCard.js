@@ -34,7 +34,7 @@ const RepCard = props => {
                 <Text style={styles.name}>{props.rep.name} ({partyPreference})</Text>
                 
                 {/* Rep title */}
-                <Text style={Dimensions.get('window').height > 1000 && styles.tabletTitle}>{props.repTitle.name}</Text>
+                <Text style={styles.title}>{props.repTitle.name}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
         fontSize: Dimensions.get('window').height > 1000 ? 20 : 16,
         fontWeight: 'bold'
     },
-    tabletTitle: {
-        fontSize: 18
+    title: {
+        fontSize: Dimensions.get('window').height > 1000 ? 18 : 14
     },
     blue : {
         color: '#1B72AB',

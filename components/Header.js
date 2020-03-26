@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-between",
         height: Dimensions.get('window').height > 1000 ? 100 : 80,
-        paddingTop: 38,
+        paddingTop: Dimensions.get('window').height > 1000 ? 40 : 38,
         backgroundColor: '#81878F'
     },
     headerText: {
