@@ -1,13 +1,12 @@
 {
   "expo": {
     "name": "Find My Reps",
+    "description": "Find My Reps provides a list of your elected officials, and their contact information, simply by providing your address.",
     "slug": "find-my-reps",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.1.0",
     "orientation": "portrait",
@@ -15,7 +14,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#B2DED8"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,6 +22,19 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.marioamayasd.find_my_reps",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#B2DED8"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
     "ios": {
       "supportsTablet": false
     }
