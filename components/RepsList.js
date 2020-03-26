@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 
 // Import RepCard Component
 
@@ -37,11 +37,11 @@ const RepsList = props => {
 const styles = StyleSheet.create({
     division: {
       backgroundColor: '#B2DED8',
-      paddingLeft: 7,
-      paddingRight: 7,
-      paddingTop: 8,
-      paddingBottom: 8,
-      fontSize: 16.5,
+      paddingLeft: Dimensions.get('window').height > 1000 ? 12 : 7,
+      paddingRight: Dimensions.get('window').height > 1000 ? 12 : 7,
+      paddingTop: Dimensions.get('window').height > 1000 ? 15 : 8,
+      paddingBottom: Dimensions.get('window').height > 1000 ? 15 : 8,
+      fontSize: Dimensions.get('window').height > 1000 ? 20 : 16.5,
       borderBottomWidth: 2,
       borderTopWidth: 1,
       borderColor: 'lightgrey',

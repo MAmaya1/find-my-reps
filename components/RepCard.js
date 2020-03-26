@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 
 const RepCard = props => {
 
@@ -34,7 +34,7 @@ const RepCard = props => {
                 <Text style={styles.name}>{props.rep.name} ({partyPreference})</Text>
                 
                 {/* Rep title */}
-                <Text>{props.repTitle.name}</Text>
+                <Text style={Dimensions.get('window').height > 1000 && styles.tabletTitle}>{props.repTitle.name}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -47,22 +47,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderColor: 'lightgrey',
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingLeft: 8,
-        paddingRight: 8
+        paddingTop: Dimensions.get('window').height > 1000 ? 12 : 8,
+        paddingBottom: Dimensions.get('window').height > 1000 ? 12 : 8,
+        paddingLeft: Dimensions.get('window').height > 1000 ? 12 : 8,
+        paddingRight: Dimensions.get('window').height > 1000 ? 12 : 8
     },
     image: {
-        width: 64,
-        height: 80,
-        marginRight: 8
+        width: Dimensions.get('window').height > 1000 ? 80 : 64,
+        height: Dimensions.get('window').height > 1000 ? 100 : 80,
+        marginRight: Dimensions.get('window').height > 1000 ? 12 : 8
     },
     textbox: {
         justifyContent: 'center'
     },
     name: {
-        fontSize: 16,
+        fontSize: Dimensions.get('window').height > 1000 ? 20 : 16,
         fontWeight: 'bold'
+    },
+    tabletTitle: {
+        fontSize: 18
     },
     blue : {
         color: '#1B72AB',
