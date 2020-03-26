@@ -38,8 +38,6 @@ const AddressForm = props => {
         }
     }
 
-    console.log('WINDOW HEIGHT ====>', Dimensions.get('window').height)
-
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={styles.container}>
