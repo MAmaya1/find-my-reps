@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Dimensions } from 'react-native';
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -48,10 +48,10 @@ export default function App() {
             screenOptions={{
               headerStyle: {
                 backgroundColor: '#81878F',
-                height: 80
+                height: Dimensions.get('window').height > 1000 ? 100 : 80
               },
               headerTitleStyle: {
-                fontSize: 20,
+                fontSize: Dimensions.get('window').height > 1000 ? 32 : 20,
                 color: '#FFF',
                 fontWeight: 'bold'
               }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, Image, Keyboard, Dimensions } from 'react-native';
 import _ from 'lodash';
 import { GOOGLE_KEY } from 'react-native-dotenv';
 
@@ -57,9 +57,11 @@ const GoogleAutoComplete = props => {
 const styles = StyleSheet.create({
     predictionsBox: {
         backgroundColor: '#FFF',
-        width: '100%',
-        padding: 5,
-        zIndex: 5
+        width: Dimensions.get('window').height > 1000 ? '90%' : '100%',
+        padding: Dimensions.get('window').height > 1000 ? 10 : 5,
+        zIndex: 5,
+        marginLeft: 'auto',
+        marginRight: 'auto'
     },
     address: {
         paddingLeft: 2,

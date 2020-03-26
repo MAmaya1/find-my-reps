@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 const Header = props => {
@@ -27,20 +27,20 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: "space-between",
-        height: 80,
-        paddingTop: 38,
+        height: Dimensions.get('window').height > 1000 ? 100 : 80,
+        paddingTop: Dimensions.get('window').height > 1000 ? 40 : 38,
         backgroundColor: '#81878F'
     },
     headerText: {
-        fontSize: 20,
+        fontSize: Dimensions.get('window').height > 1000 ? 32 : 20,
         color: '#FFF',
         fontWeight: 'bold',
-        marginLeft: 18,
-        marginTop: 1
+        marginLeft: 18
     },
     gear: {
         color: 'lightgrey',
-        marginRight: 18
+        marginRight: 18,
+        marginTop: Dimensions.get('window').height > 1000 ? 10 : 0
     }
 })
 

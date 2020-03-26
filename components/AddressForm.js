@@ -8,7 +8,8 @@ import {
     TouchableWithoutFeedback, 
     TouchableOpacity,
     Keyboard, 
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Dimensions
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -48,7 +49,7 @@ const AddressForm = props => {
                         behavior='position'
                         keyboardVerticalOffset={180}
                     >
-                        <View style={styles.content}>
+                        <View style={Dimensions.get('window').height > 1000 ? styles.tabletContent : styles.content}>
                             <Text style={styles.mainHeading}>Welcome to Find My Reps</Text>
                             <Text style={styles.subHeading}>Find My Reps is provided as a public service to find your elected officials along with their website, email, phone number, and mailing address.</Text>
                             <View style={styles.textInputWrapper}>
@@ -110,7 +111,13 @@ const styles = StyleSheet.create({
     content: {
         marginTop: 70,
         marginLeft: 30,
-        marginRight: 30,
+        marginRight: 30
+    },
+    tabletContent: {
+        width: Dimensions.get('window').width * .70,
+        marginTop: 70,
+        marginLeft: 'auto',
+        marginRight: 'auto'
     },
     textInputWrapper: {
         backgroundColor: '#86B0AC',
@@ -118,30 +125,33 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         paddingLeft: 10,
         paddingRight: 10,
-        minHeight: 170
+        minHeight: Dimensions.get('window').height > 1000 ? 180 : 170
     },
     mainHeading: {
-        fontSize: 25,
+        fontSize: Dimensions.get('window').height > 1000 ? 30 : 25,
         textAlign: 'center',
         paddingBottom: 10
     },
     subHeading: {
-        fontSize: 15,
+        fontSize: Dimensions.get('window').height > 1000 ? 20 : 15,
         textAlign: 'center',
         paddingBottom: 40
     },
     addressText: {
         textAlign: 'center',
         paddingBottom: 10,
+        fontSize: Dimensions.get('window').height > 1000 ? 20 : 14
     },
     textInput: {
-        height: 40,
+        height: Dimensions.get('window').height > 1000 ? 50 : 40,
         width: 200,
         borderColor: 'gray',
         padding: 5,
         borderWidth: 1,
-        width: '100%',
-        backgroundColor: '#FAF9F7'
+        width: Dimensions.get('window').height > 1000 ? '90%' : '100%',
+        backgroundColor: '#FAF9F7',
+        marginLeft: 'auto',
+        marginRight: 'auto'
     },
     submitButton: {
         width: 140,
@@ -161,7 +171,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#CC3B33',
         paddingBottom: 10,
-        letterSpacing: 0.1
+        letterSpacing: 0.1,
+        fontSize: Dimensions.get('window').height > 1000 ? 20 : 14
     }
   });
 

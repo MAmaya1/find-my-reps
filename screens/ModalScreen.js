@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Button, Linking, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, Button, Linking, TouchableOpacity, Text, Dimensions } from 'react-native';
 import Modal from "react-native-modal";
 
 const ModalScreen = props => {
@@ -43,15 +43,15 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         height: 160,
-        marginLeft: 30,
-        marginRight: 30,
+        width: Dimensions.get('window').height > 1000 ? Dimensions.get('window').width * .60 : 'auto',
+        marginLeft: Dimensions.get('window').height > 1000 ? 'auto' : 30,
+        marginRight: Dimensions.get('window').height > 1000 ? 'auto' : 30,
         paddingLeft: 20,
         paddingRight: 20,
         backgroundColor: '#86B0AC'
     },
     button: {
         height: 80,
-        width: '100%',
         margin: 0
     },
     bottomButton: {

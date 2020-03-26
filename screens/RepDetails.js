@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, Linking, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Linking, TouchableOpacity, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 // Import Modal Screen
@@ -69,9 +69,9 @@ const RepDetails = ({ route, ...props })=> {
                         <View style={styles.addressBox}>
                             {repInfo.address.map((address, index) => (
                             <View key={index}>
-                                <Text>{'\n'}{address['line1']}</Text>
-                                {address['line2'] && <Text>{address['line2']} {address['line3']}</Text>}
-                                <Text>{address['city']}, {address['state']} {address['zip']}</Text>
+                                <Text style={styles.text}>{'\n'}{address['line1']}</Text>
+                                {address['line2'] && <Text style={styles.text}>{address['line2']} {address['line3']}</Text>}
+                                <Text style={styles.text}>{address['city']}, {address['state']} {address['zip']}</Text>
                             </View>
                         ))}
                     </View>
@@ -81,7 +81,7 @@ const RepDetails = ({ route, ...props })=> {
 
             {/* TODO: refactor links for iOS */}
             <View style={styles.container}>
-                <Text>Phone</Text>
+                <Text style={styles.text}>Phone</Text>
                 <Text style={styles.link} onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>
             </View>
 
@@ -89,7 +89,7 @@ const RepDetails = ({ route, ...props })=> {
 
             {repInfo.emails !== undefined && (
                 <View style={styles.container}>
-                    <Text>Email</Text>
+                    <Text style={styles.text}>Email</Text>
                     <Text style={styles.link} onPress={() => Linking.openURL(`mailto: ${repInfo.emails[0]}`)}>{repInfo.emails}</Text>
                 </View>
             )}
@@ -97,7 +97,7 @@ const RepDetails = ({ route, ...props })=> {
             {/* Verify Rep website */}
             {repInfo.urls !== undefined && (
                 <View style={styles.container}>
-                    <Text>Website</Text>
+                    <Text style={styles.text}>Website</Text>
                     <Text style={styles.link} onPress={() => Linking.openURL(repInfo.urls[0])}>{repInfo.urls}</Text>
                 </View>
             )}
@@ -107,17 +107,17 @@ const RepDetails = ({ route, ...props })=> {
                 repInfo.channels.map((channel, index) => (
                     channel.type.toLowerCase() === 'facebook' ? (
                         <View style={styles.container} key={index}>
-                            <Text>Facebook</Text>
+                            <Text style={styles.text}>Facebook</Text>
                             <Text style={styles.link} onPress={() => Linking.openURL(`https://facebook.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'twitter' ? (
                         <View style={styles.container} key={index}>
-                            <Text>Twitter</Text>
+                            <Text style={styles.text}>Twitter</Text>
                             <Text style={styles.link} onPress={() => Linking.openURL(`https://twitter.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : channel.type.toLowerCase() === 'youtube' ? (
                         <View style={styles.container} key={index}>
-                            <Text>YouTube</Text>
+                            <Text style={styles.text}>YouTube</Text>
                             <Text style={styles.link} onPress={() => Linking.openURL(`https://youtube.com/${channel.id}`)}>{channel.id}</Text>
                         </View>
                     ) : null
@@ -132,11 +132,11 @@ const RepDetails = ({ route, ...props })=> {
 const styles = StyleSheet.create({
     profileContainer: {
         flexDirection: 'row',
-        paddingTop: 15,
+        paddingTop: Dimensions.get('window').height > 1000 ? 20 : 15,
         paddingBottom: 15,
         borderBottomWidth: 1,
         borderBottomColor: 'grey',
-        marginLeft: 18,
+        marginLeft: Dimensions.get('window').height > 1000 ? 20 : 18,
         marginRight: 18
     },
     gear: {
@@ -146,27 +146,27 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: "space-between",
-        paddingTop: 15,
-        paddingBottom: 15,
-        marginLeft: 18,
-        marginRight: 18,
+        paddingTop: Dimensions.get('window').height > 1000 ? 20 : 15,
+        paddingBottom: Dimensions.get('window').height > 1000 ? 20 : 15,
+        marginLeft: Dimensions.get('window').height > 1000 ? 20 : 18,
+        marginRight: Dimensions.get('window').height > 1000 ? 20 : 18,
         borderBottomWidth: 1,
-        borderBottomColor: 'grey',
+        borderBottomColor: 'grey'
     },
     image: {
-        width: 120,
-        height: 160,
-        marginRight: 18
+        width: Dimensions.get('window').height > 1000 ? 200 : 120,
+        height: Dimensions.get('window').height > 1000 ? 250 : 160,
+        marginRight: Dimensions.get('window').height > 1000 ? 20 : 18
     },
     infobox: {
         width: '55%'
     },
     name: {
-        fontSize: 18,
+        fontSize: Dimensions.get('window').height > 1000 ? 28 : 18,
         fontWeight: 'bold'
     },
     title: {
-        fontSize: 16,
+        fontSize: Dimensions.get('window').height > 1000 ? 20 : 16,
         flexShrink: 1
     },
     blue : {
@@ -181,8 +181,12 @@ const styles = StyleSheet.create({
         color: 'grey',
         fontWeight: 'bold'
     },
+    text: {
+        fontSize: Dimensions.get('window').height > 1000 ? 20 : 14
+    },
     link: {
-        color: '#1B72AB'
+        color: '#1B72AB',
+        fontSize: Dimensions.get('window').height > 1000 ? 20 : 14
     }
   });
 
