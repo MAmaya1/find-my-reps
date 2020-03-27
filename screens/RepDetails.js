@@ -81,11 +81,13 @@ const RepDetails = ({ route, ...props })=> {
                 </View>
             </View>
 
-            {/* Rep Phone */}
-            <View style={styles.container}>
-                <Text style={styles.text}>Phone</Text>
-                <Text style={styles.link} onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>
-            </View>
+            {/* Verify Rep Phone */}
+            {repInfo.phones !== undefined && (
+                <View style={styles.container}>
+                    <Text style={styles.text}>Phone</Text>
+                    <Text style={styles.link} onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>
+                </View>
+            )}
 
             {/* Verify Rep email */}
 
