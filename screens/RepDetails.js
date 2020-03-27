@@ -30,7 +30,7 @@ const RepDetails = ({ route, ...props })=> {
     })
 
     // Get Party Preference to render alongside Rep Name
-    let partyPreference = repInfo.party !== undefined && (
+    let partyPreference = repInfo.party !== undefined ? (
         repInfo.party.toLowerCase().includes('democrat') ? (
             <Text style={styles.blue}>D</Text>
         ) : repInfo.party.toLowerCase().includes('republican') ? (
@@ -38,7 +38,7 @@ const RepDetails = ({ route, ...props })=> {
         ) : repInfo.party.toLowerCase().includes('nonpartisan') ? (
             <Text style={styles.grey}>NP</Text>
         ): <Text>{repInfo.party}</Text>
-    )
+    ) : ' '
 
     return(
         <View style={styles.main}>
