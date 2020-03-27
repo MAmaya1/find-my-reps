@@ -30,13 +30,15 @@ const RepDetails = ({ route, ...props })=> {
     })
 
     // Get Party Preference to render alongside Rep Name
-    let partyPreference = repInfo.party.toLowerCase().includes('democrat') ? (
-        <Text style={styles.blue}>D</Text>
-    ) : repInfo.party.toLowerCase().includes('republican') ? (
-        <Text style={styles.red}>R</Text>
-    ) : repInfo.party.toLowerCase().includes('nonpartisan') ? (
-        <Text style={styles.grey}>NP</Text>
-    ) : <Text style={styles.grey}>{repInfo.party}</Text>
+    let partyPreference = repInfo.party !== undefined && (
+        repInfo.party.toLowerCase().includes('democrat') ? (
+            <Text style={styles.blue}>D</Text>
+        ) : repInfo.party.toLowerCase().includes('republican') ? (
+            <Text style={styles.red}>R</Text>
+        ) : repInfo.party.toLowerCase().includes('nonpartisan') ? (
+            <Text style={styles.grey}>NP</Text>
+        ): <Text>{repInfo.party}</Text>
+    )
 
     return(
         <View style={styles.main}>
@@ -79,7 +81,7 @@ const RepDetails = ({ route, ...props })=> {
                 </View>
             </View>
 
-            {/* TODO: refactor links for iOS */}
+            {/* Rep Phone */}
             <View style={styles.container}>
                 <Text style={styles.text}>Phone</Text>
                 <Text style={styles.link} onPress={() => Linking.openURL(`tel: ${repInfo.phones[0]}`)}>{repInfo.phones}</Text>

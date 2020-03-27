@@ -4,13 +4,17 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'rea
 const RepCard = props => {
 
     // Get Party Preference to render alongside Rep Name
-    let partyPreference = props.rep.party.toLowerCase().includes('democrat') ? (
-        <Text style={styles.blue}>D</Text>
-    ) : props.rep.party.toLowerCase().includes('republican') ? (
-        <Text style={styles.red}>R</Text>
-    ) : props.rep.party.toLowerCase().includes('nonpartisan') ? (
-        <Text style={styles.grey}>NP</Text>
-    ): <Text>({props.rep.party})</Text>
+    let partyPreference = props.rep.party !== undefined ? (
+        props.rep.party.toLowerCase().includes('democrat') ? (
+            <Text style={styles.blue}>D</Text>
+        ) : props.rep.party.toLowerCase().includes('republican') ? (
+            <Text style={styles.red}>R</Text>
+        ) : props.rep.party.toLowerCase().includes('nonpartisan') ? (
+            <Text style={styles.grey}>NP</Text>
+        ): <Text>({props.rep.party})</Text>
+    ) : (
+        <Text style={styles.grey}>No Party Info</Text>
+    )
 
     return(
         <TouchableOpacity
