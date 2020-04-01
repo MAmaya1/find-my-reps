@@ -11,7 +11,7 @@ const RepCard = props => {
             <Text style={styles.red}>R</Text>
         ) : props.rep.party.toLowerCase().includes('nonpartisan') ? (
             <Text style={styles.grey}>NP</Text>
-        ): <Text>({props.rep.party})</Text>
+        ): <Text>{props.rep.party}</Text>
     ) : (
         <Text style={styles.grey}>No Party Info</Text>
     )
